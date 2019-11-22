@@ -45,6 +45,102 @@ public class Cnpj {
         }
         return uniqueInstance;
     }
+    
+      /**
+     *
+     * @param cnpj Brazilian number CNPJ at format ##.###.###/####-## or ##.###.###/####-##
+     * @return Returns True when is a valid Brazilian CPF or false when it
+     * isn't.
+     */
+    public boolean isCnpj(String cnpj) {
+        return validateCnpj(cnpj);
+    }
+    
+    private boolean validateCnpj(String cnpj) {
+        /**
+         * Removing nonnumeric characters
+         */
+        cnpj = cnpj.replace(".", "").replace("/", "").replace("-", "");
+         
+        /**
+         * Brazilian CNPJ has 14 digits length, anything different, it's invalid
+         * number
+         */
+        if (cnpj.length() != 14) {
+            return false;
+        }
+        
+        /**
+         * Variables declaration's wich will be used by Method.
+         */
+        String firstPart = cnpj.substring(0, 12);
+        String secondPart = cnpj.substring(0, 13);
+        String div1FirstPart = cnpj.substring(0, 4);
+        String div2FirstPart = cnpj.substring(4, 12);
+        String div1SecondPart = cnpj.substring(0, 5);
+        String div2SecondPart = cnpj.substring(5, 13);
+        int firstDigit = Integer.parseInt(cnpj.substring(12, 13));
+        int secondDigit = Integer.parseInt(cnpj.substring(13, 14));
+        int firstSum = 0;
+        int secondSum = 0;
+        int div1FirstSum = 0;
+        int div2FirstSum = 0;
+        int div1SegSum = 0;
+        int div2SegSum = 0;
+        int firstDigitCalculated = 9999;
+        int secondDigitCalculated = 9999;
+        
+       
 
+        /**
+         * First Digit Calculation
+         */
+        int cont = 5;
+        for (int i = 0; i < div1FirstPart.length(); i++) {
+            div1FirstSum += Character.getNumericValue(div1FirstPart.charAt(i)) * cont;
+            cont--;
+        }
+        int cont2 = 9;
+        for (int i = 0; i < div2FirstPart.length(); i++) {
+            div2FirstSum += Character.getNumericValue(div2FirstPart.charAt(i)) * cont2;
+            cont2--;
+        }
+        firstSum = div1FirstSum + div2FirstSum;
+
+        
+        if (firstSum % 11 < 2) {
+            firstDigitCalculated = 0;
+        } else {
+            firstDigitCalculated = 11 - firstSum % 11;
+        }
+
+        /**
+         * Second Digit Calculation
+         */
+        int cont3 = 6;
+        for (int i = 0; i < div1SecondPart.length(); i++) {
+            div1SegSum += Character.getNumericValue(div1SecondPart.charAt(i)) * cont3;
+            cont3--;
+        }
+        int cont4 = 9;
+        for (int i = 0; i < div2SecondPart.length(); i++) {
+            div2SegSum += Character.getNumericValue(div2SecondPart.charAt(i)) * cont4;
+            cont4--;
+        }
+        secondSum = div1SegSum + div2SegSum;
+
+        
+        if (secondSum % 11 < 2) {
+            secondDigitCalculated = 0;
+        } else {
+            secondDigitCalculated = 11 - secondSum % 11;
+        }
+        
+        /**
+         * Result
+         */
+        return firstDigit == firstDigitCalculated && secondDigit == secondDigitCalculated;
+
+    }
     
 }

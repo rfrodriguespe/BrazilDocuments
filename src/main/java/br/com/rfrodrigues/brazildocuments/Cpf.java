@@ -48,8 +48,7 @@ public class Cpf {
 
     /**
      *
-     * @param cpf Brazilian CPF in a fotmat 123.456.789-00 123456789-00 or
-     * 12345678900
+     * @param cpf Brazilian number CPF at format ###.###.###-## or ###########
      * @return Returns True when is a valid Brazilian CPF or false when it
      * isn't.
      */
@@ -59,7 +58,7 @@ public class Cpf {
 
     /**
      *
-     * @param cpf Brazilian CPF in a fotmat 12345678900
+     * @param cpf Brazilian number CPF at format ###.###.###-## or ###########
      * @return Returns True when is a valid Brazilian CPF or false when it
      * isn't.
      */
@@ -67,28 +66,12 @@ public class Cpf {
         return validateCpf(""+cpf);
     }
 
-    /**
-     *
-     * @param cpf Brazilian CPF in a fotmat 123.456.789-00 123456789-00 or
-     * 12345678900
-     * @return Returns True when is a valid Brazilian CPF or false when it
-     * isn't.
-     */
     private boolean validateCpf(String cpf) {
-        
         /**
-         * Variables declaration's wich will be used by Method.
+         * Removing nonnumeric characters
          */
         cpf = cpf.replace(".", "").replace("-", "");
-        String firstPartCpf = cpf.substring(0, 9);
-        String secodPartCpf = cpf.substring(0, 10);
-        int firstDigit = Integer.parseInt(cpf.substring(9, 10));
-        int secondDigit = Integer.parseInt(cpf.substring(10, 11));
-        int firstSum = 0;
-        int secondSum = 0;
-        int firsDigitCalculated = 9999;
-        int secondDigitCalculated = 9999;
-
+        
         /**
          * Brazilian CPF has 11 digits length, anything different, it's invalid
          * number
@@ -102,6 +85,17 @@ public class Cpf {
             return false;
         }
         
+        /**
+         * Variables declaration's wich will be used by Method.
+         */
+        String firstPartCpf = cpf.substring(0, 9);
+        String secodPartCpf = cpf.substring(0, 10);
+        int firstDigit = Integer.parseInt(cpf.substring(9, 10));
+        int secondDigit = Integer.parseInt(cpf.substring(10, 11));
+        int firstSum = 0;
+        int secondSum = 0;
+        int firsDigitCalculated = 9999;
+        int secondDigitCalculated = 9999;
 
         /**
          * First Digit Calculation
