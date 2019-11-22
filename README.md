@@ -1,2 +1,7 @@
 # BrazilDocuments
-API para a validação de CPF, CNPJ e PIS brasileiros.
+
+Biblioteca para a validação dos seguintes documentos brasileiros:
+
+CPF;
+CNPJ;
+PIS(em andamento);
