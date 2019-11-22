@@ -56,16 +56,6 @@ public class Cpf {
         return validateCpf(cpf);
     }
 
-    /**
-     *
-     * @param cpf Brazilian number CPF at format ###.###.###-## or ###########
-     * @return Returns True when is a valid Brazilian CPF or false when it
-     * isn't.
-     */
-    public boolean isCpf(long cpf) {
-        return validateCpf(""+cpf);
-    }
-
     private boolean validateCpf(String cpf) {
         /**
          * Removing nonnumeric characters

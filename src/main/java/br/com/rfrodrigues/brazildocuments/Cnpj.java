@@ -48,8 +48,8 @@ public class Cnpj {
     
       /**
      *
-     * @param cnpj Brazilian number CNPJ at format ##.###.###/####-## or ##.###.###/####-##
-     * @return Returns True when is a valid Brazilian CPF or false when it
+     * @param cnpj Brazilian number CNPJ at format ##.###.###/####-## or ##############
+     * @return Returns True when is a valid Brazilian CNPJ or false when it
      * isn't.
      */
     public boolean isCnpj(String cnpj) {
