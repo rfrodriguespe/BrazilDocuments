@@ -53,15 +53,22 @@ public class Cpf {
      * isn't.
      */
     public boolean isCpf(String cpf) {
-        return validateCpf(cpf);
-    }
-
-    private boolean validateCpf(String cpf) {
         /**
          * Removing nonnumeric characters
          */
         cpf = cpf.replace(".", "").replace("-", "");
-        
+        long test;
+        try {
+            test = Long.parseLong(cpf);
+        } catch (NumberFormatException e) {
+            return false;
+        } finally {
+            return validateCpf(cpf);
+        }
+    }
+
+    private boolean validateCpf(String cpf) {
+
         /**
          * Brazilian CPF has 11 digits length, anything different, it's invalid
          * number
@@ -74,7 +81,7 @@ public class Cpf {
                 || (cpf.length() != 11)) {
             return false;
         }
-        
+
         /**
          * Variables declaration's wich will be used by Method.
          */
@@ -96,7 +103,6 @@ public class Cpf {
             cont--;
         }
 
-        
         if (firstSum % 11 < 2) {
             firsDigitCalculated = 0;
         } else {
@@ -111,18 +117,17 @@ public class Cpf {
             secondSum += Character.getNumericValue(secodPartCpf.charAt(i)) * cont2;
             cont2--;
         }
-        
+
         if (secondSum % 11 < 2) {
             secondDigitCalculated = 0;
         } else {
             secondDigitCalculated = 11 - secondSum % 11;
         }
-        
 
         /**
          * Validation of check digits
          */
         return firstDigit == firsDigitCalculated && secondDigit == secondDigitCalculated;
     }
-    
+
 }
