@@ -21,12 +21,22 @@ public class CpfTest {
 
     @Test
     public void testIsCpf() {
-        assertEquals(true, Cpf.getInstance().isCpf("01323197486"));
-        assertEquals(true, Cpf.getInstance().isCpf("013.231.974-86"));
-        assertEquals(false, Cpf.getInstance().isCpf("01321797486"));
-        assertEquals(false, Cpf.getInstance().isCpf("01797486"));
-        assertEquals(true, Cpf.getInstance().isCpf("29780622829"));
-        assertEquals(false, Cpf.getInstance().isCpf("2978062282945"));
+        assertEquals(true, Cpf.getInstance().isCpf("44027941020"));
+        assertEquals(true, Cpf.getInstance().isCpf("440.279.410-20"));
+        assertEquals(true, Cpf.getInstance().isCpf("59485047789"));
+        assertEquals(true, Cpf.getInstance().isCpf("594850477-89"));
+        assertEquals(false, Cpf.getInstance().isCpf("59485047790"));
+        assertEquals(false, Cpf.getInstance().isCpf("11111111111"));
+        assertEquals(false, Cpf.getInstance().isCpf("22222222222"));
+        assertEquals(false, Cpf.getInstance().isCpf("33333333333"));
+        assertEquals(false, Cpf.getInstance().isCpf("44444444444"));
+        assertEquals(false, Cpf.getInstance().isCpf("55555555555"));
+        assertEquals(false, Cpf.getInstance().isCpf("66666666666"));
+        assertEquals(false, Cpf.getInstance().isCpf("77777777777"));
+        assertEquals(false, Cpf.getInstance().isCpf("88888888888"));
+        assertEquals(false, Cpf.getInstance().isCpf("99999999999"));
         assertEquals(false, Cpf.getInstance().isCpf("017asd97486"));
+        assertEquals(false, Cpf.getInstance().isCpf("01798689687997486"));
+        assertEquals(false, Cpf.getInstance().isCpf("7997486"));
     }
 }
